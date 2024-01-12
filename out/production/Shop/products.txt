@@ -1,0 +1,3 @@
+Electronics,E02,kkds,5,450.0,kio,6
+Electronics,E02,das,5,120.0,fsda,3
+Clothing,C02,FDs,4,450.0,L,Red

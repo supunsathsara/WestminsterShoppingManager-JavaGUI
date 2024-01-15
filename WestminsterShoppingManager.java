@@ -5,6 +5,8 @@ import java.util.List;
 class WestminsterShoppingManager implements ShoppingManager {
     private List<Product> productList;
 
+    private List<String> CustomerNICList = new ArrayList<>();
+
     // Constructor
     public WestminsterShoppingManager() {
         this.productList = new ArrayList<>();
@@ -112,11 +114,28 @@ class WestminsterShoppingManager implements ShoppingManager {
     }
 
 
-    public void openShoppingGUI() {
+    public void openShoppingGUI(String customerNIC) {
+        //check if the customer is already in the list
+        boolean flag = false;
+        for (String nic : CustomerNICList) {
+            if (nic.equals(customerNIC)) {
+                flag = true;
+                break;
+            }
+        }
+
         ShoppingCart shoppingCart = new ShoppingCart();
+
+        if (!flag) {
+            CustomerNICList.add(customerNIC);
+            shoppingCart.setFirstPurchase(true);
+        }
+
         ProductGUI productGUI = new ProductGUI(productList, shoppingCart);
 
         productGUI.setVisible(true);
 
     }
+
+
 }

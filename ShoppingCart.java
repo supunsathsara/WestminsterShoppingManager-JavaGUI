@@ -8,11 +8,12 @@ public class ShoppingCart {
     private Map<String, Integer> categoryCounts; // Map to store the count of products per category
     private boolean firstPurchase; // Flag to track the first purchase
 
+
     // Constructor
     public ShoppingCart() {
         this.products = new ArrayList<>();
         this.categoryCounts = new HashMap<>();
-        this.firstPurchase = true;
+        this.firstPurchase = false;
     }
 
     public ShoppingCart getInstance() {
@@ -57,14 +58,13 @@ public class ShoppingCart {
         // Apply first purchase discount (10%)
         if (firstPurchase) {
             totalCost *= 0.9;
-            firstPurchase = false;
         }
 
         // Apply category discount (20%) if the user buys at least three products of the same category
         for (int count : categoryCounts.values()) {
             if (count >= 3) {
                 totalCost *= 0.8; // 20% discount
-                break; // Apply the discount for the first category with at least three products
+
             }
         }
 
@@ -94,7 +94,7 @@ public class ShoppingCart {
         }
     }
 
-    public Object getProductQuantity(Product product) {
+    public int getProductQuantity(Product product) {
         int count = 0;
 
         for (Product p : products) {
@@ -104,5 +104,10 @@ public class ShoppingCart {
         }
 
         return count;
+    }
+
+
+    public void setFirstPurchase(boolean firstPurchase) {
+        this.firstPurchase = firstPurchase;
     }
 }

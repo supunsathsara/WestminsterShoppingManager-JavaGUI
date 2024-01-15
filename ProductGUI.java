@@ -21,6 +21,7 @@ public class ProductGUI extends JFrame {
         this.productList = productList;
         this.shoppingCart = shoppingCart;
 
+
         // Initialize components
         productTypeComboBox = new JComboBox<>(new String[]{"All", "Electronics", "Clothes"});
         productTable = new JTable();
@@ -36,7 +37,7 @@ public class ProductGUI extends JFrame {
 
         // Create a panel for product selection and buttons
         JPanel topPanel = new JPanel();
-        topPanel.add(new JLabel("Select Product Type:"));
+        topPanel.add(new JLabel("Select Product Category:"));
         topPanel.add(productTypeComboBox);
 
         topPanel.add(viewShoppingCartButton);
@@ -110,8 +111,9 @@ public class ProductGUI extends JFrame {
         updateProductTable("All");
 
         // Set frame properties
-        setTitle("Product GUI");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("Westminster Shopping Center");
+        // Proper way to close the window
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -142,15 +144,16 @@ public class ProductGUI extends JFrame {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Product ID");
         model.addColumn("Product Name");
-        model.addColumn("Available Items");
-        model.addColumn("Price");
+        model.addColumn("Price (£)");
+        model.addColumn("Info");
 
         for (Product product : filteredProducts) {
             model.addRow(new Object[]{
                     product.getId(),
                     product.getName(),
-                    product.getNoOfAvailable(),
-                    product.getPrice()
+                    product.getPrice(),
+                    product instanceof Electronic ? ((Electronic) product).getBrand() + ", " + ((Electronic) product).getWarranty() + " weeks warranty" :
+                            ((Clothing) product).getSize() + ", " + ((Clothing) product).getColor()
             });
         }
 
@@ -160,7 +163,8 @@ public class ProductGUI extends JFrame {
     // Method to update the product details area based on the selected product
     private void updateProductDetailsArea(Product selectedProduct) {
         if (selectedProduct != null) {
-            String details = "Product ID: " + selectedProduct.getId() + "\n" +
+            String details = "Selected Product Details:\n";
+            details += "Product ID: " + selectedProduct.getId() + "\n" +
                     "Product Name: " + selectedProduct.getName() + "\n" +
                     "Available Items: " + selectedProduct.getNoOfAvailable() + "\n" +
                     "Price: " + selectedProduct.getPrice();
@@ -204,4 +208,6 @@ public class ProductGUI extends JFrame {
             }
         });
     }
+
+
 }

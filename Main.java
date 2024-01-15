@@ -85,7 +85,9 @@ public class Main {
                     shoppingManager.loadProducts();
                     break;
                 case 6:
-                    shoppingManager.openShoppingGUI();
+                    System.out.println("Enter Customer NIC:");
+                    String nic = scanner.next();
+                    shoppingManager.openShoppingGUI(nic);
                     break;
                 case 7:
                     System.exit(0);
@@ -96,5 +98,7 @@ public class Main {
             }
 
         }
+
+        System.out.println("Thank you for using Westminster Shopping Manager!");
     }
 }

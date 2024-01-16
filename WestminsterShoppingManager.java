@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -136,6 +137,15 @@ class WestminsterShoppingManager implements ShoppingManager {
         productGUI.setVisible(true);
 
     }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public List<String> getCustomerNICList() {
+        return CustomerNICList;
+    }
+
 
 
 }

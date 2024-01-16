@@ -52,7 +52,7 @@ public abstract class Product {
     }
 
     public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", noOfAvailable=" + noOfAvailable + ", price=" + price + "]";
+        return "Product [id=" + id + ", name=" + name + ", noOfAvailable=" + noOfAvailable + ", price=" + price;
     }
 
     public boolean equals(Object obj) {
